@@ -1,23 +1,49 @@
 import Bank from '../src/bank'
-
+console.log("test")
 // Check Account Balance User Story
 //setup
 const bank = new Bank();
 
 //scenario 1: Successfully create a bank account
 const acc = bank.createAccount('Jane Doe', 25, '123456');
-if(acc.accountNumber == '123456'){
-    console.log('scenario 1 passed.')
+if(acc.accountNumber === '123456'){
+    console.log('✓ Create a bank account passed.')
 } else {
-    console.log('scenario 1 failed')
+    console.log('x Create a bank account failed')
 }
 
 //scenario 2: Attempt to create a duplicate bank account
 try {
     bank.createAccount('Jane Doe', 25, '123456');
-    console.log('scenario 2 failed');
+    console.log('x Create a duplicate bank account failed');
 }
 catch (_) {
-    console.log('Scenario 2 passed.');
+    console.log('✓ Create a duplicate bank account passed.');
+}
+
+// Deposit Money User Story
+
+// Scenario 1: Successfully deposit money into an existing account
+try {
+    bank.depositMoney(100, '123456');
+    console.log('✓ Deposit money passed.');
+} catch (error) {
+    console.log('x Deposit money failed.');
+}
+
+// Scenario 2: Try to deposit a negative amount
+try {
+    bank.depositMoney(-100, '123456');
+    console.log('x Deposit negative amount scenario failed.');
+} catch (error) {
+    console.log('✓ Deposit negative amount scenario passed.');
+}
+
+// Scenario 3: Try to deposit into a non-existent account
+try {
+    bank.depositMoney(100, '999999');
+    console.log('x Deposit to non-existent account scenario failed.');
+} catch (error) {
+    console.log('✓ Deposit to non-existent account scenario passed.');
 }
 

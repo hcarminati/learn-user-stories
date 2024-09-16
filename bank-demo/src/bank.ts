@@ -9,7 +9,7 @@ interface BankAccount {
 /**
  * This class represent a simple bank with the ability to create new accounts
  */
-class Bank {
+export default class Bank {
     // This is a private field that holds all the accounts in the bank
     private accounts: BankAccount[] = [];
 
@@ -36,6 +36,24 @@ class Bank {
         }
         const account: BankAccount = { name, age, accountNumber, balance: 0 };
         this.accounts.push(account);
+        return account;
+    }
+
+    /**
+     * This method deposits money into account with the given amount and account
+     * @param {number} -- depositAmount The amount of money to deposit
+     * @param {string} -- accountNumber The account number of the account holder
+     * @returns {BankAccount} -- The created account
+     */
+    public depositMoney(depositAmount: number, accountNumber: string): BankAccount {
+        if (depositAmount <= 0) {
+            throw new Error('Deposit amount must be greater than zero');
+        }
+        const account = this.isAccountExists(accountNumber);
+        if (!account) {
+            throw new Error('Account not found');
+        }
+        account.balance += depositAmount;
         return account;
     }
 }
