@@ -47,3 +47,37 @@ try {
     console.log('✓ Deposit to non-existent account scenario passed.');
 }
 
+// Withdraw Money User Story
+
+// Scenario 1: Successfully withdraw money from an existing account
+try {
+    bank.withdrawMoney(10, '123456');
+    console.log('✓ Withdraw money passed.');
+} catch (error) {
+    console.log('x Withdraw money failed.');
+}
+
+// Scenario 2: Attempt to withdraw money with insufficient funds
+try {
+    bank.withdrawMoney(999, '123456');
+    console.log('x Withdraw insufficient money failed.');
+} catch (error) {
+    console.log('✓ Withdraw insufficient money passed.');
+}
+
+
+// Scenario 3: Attempt to withdraw invalid amount
+try {
+    bank.withdrawMoney(-999, '123456');
+    console.log('x Withdraw invalid amount failed.');
+} catch (error) {
+    console.log('✓ Withdraw invalid amount money passed.');
+}
+
+// Scenario 4: Try to withdraw into a non-existent account
+try {
+    bank.depositMoney(100, '999999');
+    console.log('x Withdraw from non-existent account scenario failed.');
+} catch (error) {
+    console.log('✓ Withdraw from non-existent account scenario passed.');
+}
